@@ -42,5 +42,10 @@ public class NpcController : MonoBehaviour
     private void Tick()
     {
         _navMeshAgent.destination = wayPoints[_index].position;
+        _navMeshAgent.speed = _agentSpeed / 2;
+
+        if (_player == null || Vector3.Distance(transform.position, _player.position) > aggroRange) return;
+        _navMeshAgent.destination = _player.position;
+        _navMeshAgent.speed = _agentSpeed;
     }
 }
